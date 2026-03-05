@@ -1,0 +1,89 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+  list-style: none;
+  outline: none;
+}
+
+:root {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  --blue-color: #5AC6D8;
+  --green-color: #70B62E;
+  --black: #292929;
+  --background-color: #f5f5f5;
+}
+
+body {
+  background-color: var(--background-color);
+  color: var(--black);
+}
+
+.btn {
+  padding: 10px 20px;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn:hover {
+  background-color: var(--green-color);
+}
+
+.btn_primary {
+  background-color: var(--blue-color);
+}
+
+.btn_secondary {
+  background-color: var(--black);
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+}
+.logo{
+  width: 10rem;
+}
+.header h1 {
+  font-size: 2rem;
+  margin-bottom: 10px;
+  color: var(--blue-color);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+table caption{
+  text-align: left;
+  font-weight: 600;
+  padding: 12px;
+  margin-bottom: 10px;
+  font-size: 2rem;
+  color: var(--blue-color);
+}
+table th {
+  background-color: var(--blue-color);
+  color: white;
+  padding: 12px;
+  text-align: left;
+  font-weight: 600;
+}
+
+table td {
+  padding: 12px;
+  border-bottom: 1px solid #ddd;
+}
+
+table tr:hover {
+  background-color: #f9f9f9;
+}
