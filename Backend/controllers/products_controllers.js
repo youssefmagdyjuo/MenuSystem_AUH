@@ -1,13 +1,23 @@
 const { getAllProducts, addProduct, updateProduct, deleteOneProduct } = require('../services/product_service');
+const { getCategoryNameById } = require('../services/category_service');
+const { ObjectId } = require('mongodb');
+
 // GET METHOD FETCH ALL PRODUCTS
 const getProducts_controller = async (req, res) => {
     try {
+        const lang = req.query.lang || "en";
         const products = await getAllProducts();
+        const translatedProducts = products.map(p => ({
+            ...p,
+            name: p.name[lang],
+            categoryName: p.categoryName[lang],
+            description: p.description[lang]
+        }));
         res.json({
-            results: products.length,
+            results: translatedProducts.length,
             success: true,
             message: "Products fetched successfully",
-            data: products
+            data: translatedProducts
         });
     } catch (err) {
         res.status(500).json({
@@ -22,12 +32,14 @@ const getProducts_controller = async (req, res) => {
 // ADD A NEW PRODUCT
 const addProduct_controller = async (req, res) => {
     try {
-        const { name, price, description, category } = req.body;
+        const { name, price, description, categoryId } = req.body;
+        const categoryName = await getCategoryNameById(categoryId);
         const newProduct = {
             name,
             price,
             description,
-            category,
+            categoryName: categoryName,
+            categoryId: new ObjectId(categoryId),
             isAvailable: true
         }
         const result = await addProduct(newProduct);

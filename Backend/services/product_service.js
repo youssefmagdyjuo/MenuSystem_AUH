@@ -26,18 +26,10 @@ const deleteOneProduct = async (productId) => {
     const result = await db.collection('products').deleteOne({ _id: new ObjectId(productId) });
     return result;
 };
-//delete multiple products by category
-const deleteProductsByCategory = async (categoryName) => {
-    const db = getDB();
-    const result = await db.collection('products').deleteMany({
-        category: categoryName
-    });
-    return result;
-};
+
 module.exports = {
     getAllProducts,
     addProduct,
     updateProduct,
     deleteOneProduct,
-    deleteProductsByCategory
 };

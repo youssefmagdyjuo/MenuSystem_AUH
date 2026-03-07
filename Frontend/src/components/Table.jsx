@@ -1,9 +1,12 @@
 import React from 'react'
+import {capitalizeWords} from '../hooks/products'
+// import { useTranslation } from "react-i18next";
 
-export default function Table({tableName,data, columns}) {
+export default function Table({tableName,data, columns,manageable}) {
+        // const { t } = useTranslation();
     return (
         <table>
-            <caption>{tableName}</caption>
+            <caption>{capitalizeWords(tableName)}</caption>
             <thead>
                 <tr>
                     {columns.map((col, index) => (
@@ -15,8 +18,9 @@ export default function Table({tableName,data, columns}) {
                 {data.map((row, rowIndex) => (
                     <tr key={rowIndex}>
                         {columns.map((col, colIndex) => (
-                            <td key={colIndex}>{row[col.key]}</td>
+                            <td key={colIndex}>{capitalizeWords(row[col.key])}</td>
                         ))}
+                        {manageable && <td>...</td>}
                     </tr>
                 ))}
             </tbody>
