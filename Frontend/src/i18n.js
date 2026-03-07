@@ -8,6 +8,7 @@ i18n.use(initReactI18next).init({
             translation: {
                 menu: "Menu",
                 products: "Products",
+                product: "Product",
                 price: "Price (L.E)",
                 category: "Category",
                 categories: "Categories",
@@ -15,7 +16,9 @@ i18n.use(initReactI18next).init({
                 name: "Name",
                 description: "Description",
                 users: "Users",
-                more: "More"
+                more: "More",
+                add:"Add",
+                new: "New"
 
             }
         },
@@ -23,6 +26,7 @@ i18n.use(initReactI18next).init({
             translation: {
                 menu: "القائمة",
                 products: "المنتجات",
+                product: "منتج",
                 price: "السعر (ج.م)",
                 category: "التصنيف",
                 categories: "التصنيفات",
@@ -30,7 +34,9 @@ i18n.use(initReactI18next).init({
                 name: "الاسم",
                 description: "الوصف",
                 users: "المستخدمون",
-                more: "المزيد"
+                more: "المزيد",
+                add:"إضافة",
+                new: "جديد"
             }
         }
     },

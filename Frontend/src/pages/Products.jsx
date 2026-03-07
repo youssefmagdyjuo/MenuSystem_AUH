@@ -27,22 +27,29 @@ export default function Products() {
         { key: "name", label: t('name') },
         { key: "description", label: t('description') },
         { key: "price", label: t('price') },
-        { key: " more", label: t('more') },
+        { key: "more", label: t('more') },
     ]
     return (
-        <div>
-            {
-                categories.map(category => (
-                    <div key={category.id}>
-                        <Table
-                            manageable={true}
-                            tableName={category.name}
-                            data={items.filter(item =>
-                                item.categoryName === category.name)}
-                            columns={Headers} />
-                    </div>
-                ))
-            }
-        </div>
+        <>
+            <div style={{ textAlign: 'center', margin: '20px 0' }}>
+                <button className='btn btn_primary' onClick={() => alert('Add Product')}>
+                    <i class="fa-solid fa-circle-plus"></i> {`${t('add')}  ${t('product')}`}
+                </button>
+            </div>
+            <div className='products_table'>
+                {
+                    categories.map(category => (
+                        <div key={category.id}>
+                            <Table
+                                manageable={true}
+                                tableName={category.name}
+                                data={items.filter(item =>
+                                    item.categoryName === category.name)}
+                                columns={Headers} />
+                        </div>
+                    ))
+                }
+            </div>
+        </>
     )
 }

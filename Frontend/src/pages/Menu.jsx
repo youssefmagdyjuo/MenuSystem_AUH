@@ -50,7 +50,7 @@ export default function Menu() {
                     <button
                         className='btn btn_primary'
                         data-html2canvas-ignore
-                        onClick={handleDownload}> <i class="fa-solid fa-download"></i> {t('download')} {t('menu')} 
+                        onClick={handleDownload}> <i class="fa-solid fa-download"></i> {t('download')}  {t('menu')} 
                     </button>
                 </div>
             </div>

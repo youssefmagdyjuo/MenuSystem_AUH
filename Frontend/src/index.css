@@ -50,6 +50,7 @@ body {
   border-radius: 5px;
   cursor: pointer;
   transition: all 0.3s ease;
+  font-size: 1.2rem;
 }
 
 .btn:hover {
@@ -84,8 +85,9 @@ body {
 
 table {
   width: 100%;
+  max-width: 60rem;
+  margin: 20px auto;
   border-collapse: collapse;
-  margin: 20px 0;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
