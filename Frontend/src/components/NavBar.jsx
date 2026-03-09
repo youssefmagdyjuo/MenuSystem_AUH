@@ -9,7 +9,7 @@ export default function NavBar() {
                     <img src="/auhLogo.png" alt="AUH Logo" />
                     <p>AUH Menu System v1.0</p>
                 </div>
-                <ul className="navbar_links">
+                {/* <ul className="navbar_links">
                     <li>
                         <Link to="/"> {t("menu")} </Link>
                     </li>
@@ -23,7 +23,7 @@ export default function NavBar() {
                         <Link to="/users"> {t("users")} </Link>
                     </li>
                     
-                </ul>
+                </ul> */}
                 <div></div>
         </div>
     )

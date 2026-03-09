@@ -1,0 +1,122 @@
+.error{
+    color: var(--danger);
+    font-size: 0.9rem;
+    margin-top: -1rem;
+    margin-bottom: -0.5rem;
+    text-align: start;
+    width: 100%;
+}
+.btn {
+    padding: 10px 20px;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 1rem;
+}
+
+.close{
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: var(--light-gray);
+}
+.btn:hover {
+    background-color: var(--green-color);
+}
+
+.btn_primary {
+    background-color: var(--blue-color);
+}
+
+.btn_secondary {
+    background-color: var(--black);
+}
+
+/*input*/
+.input_container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+.input_container label {
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+input ,.selector{
+    padding: 1rem;
+    border: 1px solid var(--light-gray);
+    border-radius: 0.4rem;
+    width: 100%;
+    font-size: 1rem;
+    color: var(--black);
+}
+
+/*popup*/
+.PopUpLayout_container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.285);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 97;
+}
+
+.PopUpLayout_box {
+    width: 90%;
+    max-width: 30rem;
+    background-color: var(--background-color);
+    border-radius: 0.4rem;
+    box-shadow: 0 0 1rem rgba(0, 0, 0, 0.183);
+    padding: 1rem;
+}
+
+.flex {
+    display: flex;
+}
+
+.none {
+    display: none;
+}
+/* =============form============= */
+
+.form_container {
+    /* height: calc(100vh - 5rem); */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
+    max-width: 35rem;
+    /* margin-top: 10rem; */
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.205);
+    padding: 1rem;
+    border-radius: 1rem;
+    height: fit-content;
+    background: var(--white);
+}
+
+form ::placeholder {
+    color: var(--light-gray);
+}
+
+.form_title {
+    text-align: center;
+    margin-bottom: 1rem;
+    font-weight: 600;
+    color: var(--color-mix);
+}

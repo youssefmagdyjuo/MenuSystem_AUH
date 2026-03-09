@@ -18,12 +18,10 @@ export default function Table({ tableName, data, columns, manageable }) {
                 {data.map((row, rowIndex) => (
                     <tr key={rowIndex}>
                         {columns.map((col) => (
-                            row[col.key]
-                            ?<td key={col.key}>{capitalizeWords(row[col.key])}</td>
-                            :<></>
+                            <td key={col.key}>{capitalizeWords(row[col.key])}</td>
                         ))}
                         {/* // If the table is manageable, add an extra cell with a "more" icon */}
-                        {manageable && <td style={{cursor:'pointer', textAlign:'center'}}><i class="fa-solid fa-ellipsis"></i></td>}
+                        {/* {manageable && <td style={{cursor:'pointer', textAlign:'center'}}><i class="fa-solid fa-ellipsis"></i></td>} */}
                     </tr>
                 ))}
             </tbody>

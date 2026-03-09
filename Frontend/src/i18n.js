@@ -18,7 +18,11 @@ i18n.use(initReactI18next).init({
                 users: "Users",
                 more: "More",
                 add:"Add",
-                new: "New"
+                new: "New",
+                arabic: "Arabic",
+                english: "English",
+                select: "Select",
+                required: "Required"
 
             }
         },
@@ -36,7 +40,11 @@ i18n.use(initReactI18next).init({
                 users: "المستخدمون",
                 more: "المزيد",
                 add:"إضافة",
-                new: "جديد"
+                new: "جديد",
+                arabic: "العربية",
+                english: "الإنجليزية",
+                select: "اختر",
+                required:"مطلوب"
             }
         }
     },

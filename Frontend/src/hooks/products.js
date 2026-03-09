@@ -11,7 +11,6 @@ export const capitalizeWords = (text) => {
         .join(" ");
 };
 
-
 // Function to fetch products from the backend API
 export const getProducts = async () => {
     try {
@@ -23,6 +22,35 @@ export const getProducts = async () => {
         return [];
     }
 };
-
+// Function to add a new product
+export const addProduct = async (productData) => {
+    try {
+        const response = await axios.post('/v1/api/products', productData);
+        return response.data;
+    } catch (error) {
+        console.error("Error adding product:", error);
+        throw error;
+    }
+};
+// Function to update a product by ID
+export const updateProduct = async (productId, updatedData) => {
+    try {
+        const response = await axios.put(`/v1/api/products/${productId}`, updatedData);
+        return response.data;
+    } catch (error) {
+        console.error("Error updating product:", error);
+        throw error;
+    }
+};
+// Function to delete a product by ID
+export const deleteProduct = async (productId) => {
+    try {
+        const response = await axios.delete(`/v1/api/products/${productId}`);
+        return response.data;
+    } catch (error) {
+        console.error("Error deleting product:", error);
+        throw error;
+    }
+};
 
 
