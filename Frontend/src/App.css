@@ -6,6 +6,13 @@
     text-align: start;
     width: 100%;
 }
+.title{
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--blue-color);
+    text-align: center;
+    padding: 1rem;
+}
 .btn {
     padding: 10px 20px;
     color: white;

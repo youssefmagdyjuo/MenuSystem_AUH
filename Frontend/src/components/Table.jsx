@@ -2,7 +2,7 @@ import React from 'react'
 import { capitalizeWords } from '../hooks/products'
 // import { useTranslation } from "react-i18next";
 
-export default function Table({ tableName, data, columns, manageable }) {
+export default function Table({ tableName, data, columns }) {
     // const { t } = useTranslation();
     return (
         <table>
@@ -20,8 +20,6 @@ export default function Table({ tableName, data, columns, manageable }) {
                         {columns.map((col) => (
                             <td key={col.key}>{capitalizeWords(row[col.key])}</td>
                         ))}
-                        {/* // If the table is manageable, add an extra cell with a "more" icon */}
-                        {/* {manageable && <td style={{cursor:'pointer', textAlign:'center'}}><i class="fa-solid fa-ellipsis"></i></td>} */}
                     </tr>
                 ))}
             </tbody>

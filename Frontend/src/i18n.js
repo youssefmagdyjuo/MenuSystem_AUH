@@ -32,7 +32,7 @@ i18n.use(initReactI18next).init({
                 products: "المنتجات",
                 product: "منتج",
                 price: "السعر (ج.م)",
-                category: "التصنيف",
+                category: "تصنيف",
                 categories: "التصنيفات",
                 download: "تنزيل ",
                 name: "الاسم",

@@ -6,6 +6,7 @@ import { useEffect } from 'react';
 import { LanguageSwitcher } from './components/LanguageSwitcher';
 import Layout from './pages/Layout';
 import Products from './pages/Products';
+import Categories from './pages/Categories';
 function App() {
   const { i18n } = useTranslation();
 
@@ -20,6 +21,7 @@ function App() {
       <Routes>
         <Route element={<Layout />} >
           <Route path="/products" element={<Products />} />
+          <Route path="/categories" element={<Categories />} />
         </Route>
           <Route path="/" element={<Menu />} />
       </Routes>

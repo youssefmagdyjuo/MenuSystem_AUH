@@ -91,6 +91,9 @@ table th {
   text-align: start;
   font-weight: 600;
 }
+table th:nth-last-child(1),table td:nth-last-child(1)  {
+  text-align: center;
+}
 
 table td {
   padding: 12px;

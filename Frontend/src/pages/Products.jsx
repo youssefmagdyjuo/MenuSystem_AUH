@@ -39,6 +39,7 @@ export default function Products() {
 
     return (
         <>
+            <h1 className='title'>{t('products')}</h1>
             {/* Add Product Button */}
             <div style={{ textAlign: 'center', margin: '20px 0' }}>
                 <Button
@@ -53,7 +54,6 @@ export default function Products() {
                     categories.map(category => (
                         <div key={category.id}>
                             <Table
-                                manageable={true}
                                 tableName={category.name}
                                 data={items.filter(item =>
                                     item.categoryName === category.name).map(item =>
