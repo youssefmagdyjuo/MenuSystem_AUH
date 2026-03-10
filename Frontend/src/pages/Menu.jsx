@@ -17,12 +17,20 @@ export default function Menu() {
         }
         fetchProducts();
     }, [i18n.language])
-
-    // 2) Extract unique categories from items
-    const categories = [...new Set(items.map(item => item.categoryName))]
+    // 2) Map items to include only the current language's name and description, and extract unique categories
+    const filteredItems = items
+    .filter(item => item.isAvailable) // Filter to include only available items
+    .map(item => ({
+        ...item,
+        name: item.name[i18n.language],
+        description: item.description[i18n.language],
+        categoryName: item.categoryName[i18n.language]
+    }))
+    // 3) Extract unique categories from items
+    const categories = [...new Set(filteredItems.map(item => item.categoryName))]
         .map((cat, index) => ({ id: index, name: cat }))
 
-    // 3) Define table headers
+    // 4) Define table headers
     const Headers = [
         { key: "name", label: t('name') },
         { key: "description", label: t('description') },
@@ -46,19 +54,19 @@ export default function Menu() {
             <div className="header">
                 <img src="/auhLogo.png" alt="" className='logo' />
                 <div>
-                    <h1 style={{margin:'0'}}>Alexandria Hospital - AUH</h1>
-                    <h1 style={{color:'var(--green-color)'}}>مستشفى الأسكندرية</h1>
+                    <h1 style={{ margin: '0' }}>Alexandria Hospital - AUH</h1>
+                    <h1 style={{ color: 'var(--green-color)' }}>مستشفى الأسكندرية</h1>
                     <button
                         className='btn btn_primary'
                         data-html2canvas-ignore
-                        onClick={handleDownload}> <i class="fa-solid fa-download"></i> {t('download')}  {t('menu')} 
+                        onClick={handleDownload}> <i class="fa-solid fa-download"></i> {t('download')}  {t('menu')}
                     </button>
                 </div>
             </div>
             {
                 categories.map(category => (
                     <div key={category.id}>
-                        <Table tableName={category.name} data={items.filter(item => item.categoryName === category.name)} columns={Headers} />
+                        <Table tableName={category.name} data={filteredItems.filter(item => item.categoryName === category.name)} columns={Headers} />
                     </div>
                 ))
             }

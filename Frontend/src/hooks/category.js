@@ -17,3 +17,19 @@ export const addCategory = async (category) => {
         console.log(error)
     }
 }
+//update category
+export const updateCategory = async (id, category) => {
+    try {
+        await axios.put(`/v1/api/categories/${id}`, category);
+    } catch (error) {
+        console.log(error)
+    }
+}
+//delete category
+export const deleteCategory = async (id) => {
+    try {
+        await axios.delete(`/v1/api/categories/${id}`);
+    } catch (error) {
+        console.log(error)
+    }
+}

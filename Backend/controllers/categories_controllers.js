@@ -27,7 +27,8 @@ const addCategory_controller = async (req, res) => {
         const { name, description } = req.body;
         const newCategory = {
             name,
-            description
+            description,
+            isAvailable: true
         }
         const result = await addCategory(newCategory);
         res.status(201).json({

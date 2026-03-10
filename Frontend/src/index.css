@@ -103,15 +103,18 @@ table td {
   position: relative;
 }
 
-table td:nth-child(1),
+/* table td:nth-child(1),
 table td:nth-child(3) {
   width: 25%;
 }
 
 table td:nth-child(2) {
   width: 50%;
+} */
+table td:nth-last-child(1){
+  max-width: 15%;
+  width: 100%;
 }
-
 table tr:hover {
   background-color: #f9f9f9;
 }

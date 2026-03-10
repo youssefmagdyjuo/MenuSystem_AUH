@@ -25,7 +25,10 @@ i18n.use(initReactI18next).init({
                 required: "Required",
                 edit: "Edit",
                 hide: "Hide",
-                delete: "Delete"
+                delete: "Delete",
+                isAvailable:'Available',
+                notAvailable:'Not Available',
+                    show: 'Show',
 
             }
         },
@@ -50,7 +53,10 @@ i18n.use(initReactI18next).init({
                 required:"مطلوب",
                 edit: "تعديل",
                 hide: "إخفاء",
-                delete: "حذف"
+                delete: "حذف",
+                isAvailable:'متوفر',
+                notAvailable:'غير متوفر',
+                show: 'إظهار',
             }
         }
     },

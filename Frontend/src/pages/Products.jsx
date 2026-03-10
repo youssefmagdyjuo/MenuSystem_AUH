@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { getProducts } from '../hooks/products';
+import { deleteProduct, getProducts, updateProduct } from '../hooks/products';
 import { useTranslation } from "react-i18next";
 import i18n from '../i18n';
 import Table from '../components/Table';
@@ -45,6 +45,7 @@ export default function Products() {
         { key: "name", label: t('name') },
         { key: "description", label: t('description') },
         { key: "price", label: t('price') },
+        { key: "isAvailable", label: t('isAvailable') },
         { key: "more", label: t('more') },
     ]
 
@@ -62,7 +63,8 @@ export default function Products() {
             </div>
             <div className='products_table'>
                 {
-                    categories.map(category => (
+                    categories
+                    .map(category => (
                         <div key={category.id}>
                             <Table
                                 tableName={category.name}
@@ -75,7 +77,7 @@ export default function Products() {
                                                     onClick={() => openOptionsId == item._id ? setOpenOptionsId(null) : setOpenOptionsId(item._id)}
                                                     style={{ cursor: 'pointer', width: '100%', textAlign: 'center' }}
                                                     class="fa-solid fa-ellipsis" ></i>
-                                                    {/* // Show options when "more" icon (...) is clicked */}
+                                                {/* // Show options when "more" icon (...) is clicked */}
                                                 <ul className={`moreOptions ${openOptionsId === item._id ? 'flex' : ''}`}>
                                                     {/* Edit option */}
                                                     <li
@@ -88,12 +90,38 @@ export default function Products() {
                                                     >
                                                         <i className="fa-solid fa-edit"></i>
                                                         {t('edit')}</li>
-                                                        {/* Hide option */}
-                                                    <li>
-                                                        <i class="fa-solid fa-ban"></i>
-                                                        {t('hide')}</li>
-                                                        {/* Delete option */}
-                                                    <li>
+                                                    {/* Hide option */}
+                                                    <li
+                                                        onClick={async () => {
+                                                            await updateProduct(item._id, { isAvailable: !item.isAvailable });
+                                                            await fetchProducts();
+                                                            setOpenOptionsId(null);
+                                                        }}
+                                                    >
+                                                        {
+                                                            item.isAvailable ? (
+                                                                <>
+                                                                    <i class="fa-solid fa-ban"></i>
+                                                                    {t('hide')}
+                                                                </>
+                                                            ) : (
+                                                                <>
+                                                                    <i class="fa-solid fa-eye"></i>
+                                                                    {t('show')}
+                                                                </>
+                                                            )
+                                                        }
+                                                        </li>
+                                                    {/* Delete option */}
+                                                    <li
+                                                    onClick={async()=>{
+                                                        if(window.confirm(t('delete') + ' ' + item.name + '?')){
+                                                            await deleteProduct(item._id);
+                                                            await fetchProducts();
+                                                            setOpenOptionsId(null);
+                                                        }
+                                                    }}  
+                                                    >
                                                         <i className="fa-solid fa-trash"></i>
                                                         {t('delete')}</li>
                                                 </ul>
@@ -106,7 +134,7 @@ export default function Products() {
                 }
             </div>
             <PopUpLayout open={formOpen}>
-                <div className='close' onClick={() => {setFormOpen(false), setOpenOptionsId(null)}}>
+                <div className='close' onClick={() => { setFormOpen(false), setOpenOptionsId(null) }}>
                     <i class="fa-solid fa-xmark"></i>
                 </div>
                 <ProductForm setFormOpen={setFormOpen} fetchProducts={fetchProducts} formMode={formMode} setOpenOptionsId={setOpenOptionsId} />

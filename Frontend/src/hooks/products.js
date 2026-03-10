@@ -42,6 +42,7 @@ export const updateProduct = async (productId, updatedData) => {
         throw error;
     }
 };
+
 // Function to delete a product by ID
 export const deleteProduct = async (productId) => {
     try {
