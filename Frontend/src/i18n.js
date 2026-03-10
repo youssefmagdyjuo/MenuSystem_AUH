@@ -22,7 +22,10 @@ i18n.use(initReactI18next).init({
                 arabic: "Arabic",
                 english: "English",
                 select: "Select",
-                required: "Required"
+                required: "Required",
+                edit: "Edit",
+                hide: "Hide",
+                delete: "Delete"
 
             }
         },
@@ -44,11 +47,15 @@ i18n.use(initReactI18next).init({
                 arabic: "العربية",
                 english: "الإنجليزية",
                 select: "اختر",
-                required:"مطلوب"
+                required:"مطلوب",
+                edit: "تعديل",
+                hide: "إخفاء",
+                delete: "حذف"
             }
         }
     },
     lng: savedLanguage,
+    debug: false,
     fallbackLng: "en",
     interpolation: {
         escapeValue: false

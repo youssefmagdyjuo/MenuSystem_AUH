@@ -11,10 +11,23 @@ const productSlice = createSlice({
             en: "",
             ar: ""
         },
-        price: 0,
+        price: '',
         categoryId: '',
+        categoryName: '',
+        id:''
     },
     reducers: {
+
+        setFullData: (state, action) => {
+            const { name, description, price, categoryId, categoryName, _id } = action.payload;
+            state.name = name;
+            state.description = description;
+            state.price = price;
+            state.categoryId = categoryId;
+            state.categoryName = categoryName;
+            state.id = _id;
+        },
+
         setName: (state, action) => {
             const { lang, value } = action.payload;
             state.name[lang] = value;
@@ -47,7 +60,8 @@ export const {
     setDescription,
     setPrice,
     setCategory,
-    resetProduct
+    resetProduct,
+    setFullData
 } = productSlice.actions;
 
 export default productSlice.reducer;

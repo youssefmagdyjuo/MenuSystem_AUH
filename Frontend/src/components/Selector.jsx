@@ -51,6 +51,7 @@ export default function Selector({options,placeholder,onChange}) {
                         borderRadius: '0.5rem',
                         boxShadow: '0 4px 10px rgba(0,0,0,0.15)',
                         zIndex: 20,
+                        
                     }),
 
                     option: (base, state) => ({

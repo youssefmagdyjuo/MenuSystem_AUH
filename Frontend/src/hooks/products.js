@@ -14,8 +14,8 @@ export const capitalizeWords = (text) => {
 // Function to fetch products from the backend API
 export const getProducts = async () => {
     try {
-        const lang = i18n.language || "en";
-        const response = await axios.get(`/v1/api/products?lang=${lang}`);
+        // const lang = i18n.language || "en";
+        const response = await axios.get(`/v1/api/products`);
         return response.data.data;
     } catch (error) {
         console.error("Error fetching products:", error);

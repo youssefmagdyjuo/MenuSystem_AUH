@@ -8,15 +8,14 @@ import { useEffect, useState } from 'react';
 import { getCategories } from '../hooks/category';
 import Selector from './Selector';
 import i18n from '../i18n';
-import { addProduct } from '../hooks/products';
-export default function ProductForm({ setFormOpen, fetchProducts }) {
+import { addProduct, updateProduct } from '../hooks/products';
+export default function ProductForm({ setFormOpen, fetchProducts, formMode ,setOpenOptionsId}) {
     const [categories, setCategories] = useState([])
     const [validationErrors, setValidationErrors] = useState({});
     useEffect(() => {
         const fetchCategories = async () => {
             const resulte = await getCategories()
             setCategories(resulte)
-            // console.log(resulte);
 
         }
         fetchCategories();
@@ -59,6 +58,24 @@ export default function ProductForm({ setFormOpen, fetchProducts }) {
         // Reset the form state
         dispatch(resetProduct());
     }
+    //update product function will be added here in the future
+    const handleUpdateProduct = async (e,id) => {
+        e.preventDefault();
+        //validation check
+        if (!validateForm()) {
+            return;
+        }
+        // Logic to update the product
+        await updateProduct(id, product);
+        // Refresh the product list after updating
+        await fetchProducts();
+        // Close the form after updating
+        setFormOpen(false);
+        // Reset the form state        
+        dispatch(resetProduct());
+        // Close options menu if open after updating
+        setOpenOptionsId(null);
+    }
     //handle options to send it to selector
     const categoryOptions = categories.map((cat) => ({
         value: cat._id,
@@ -68,7 +85,7 @@ export default function ProductForm({ setFormOpen, fetchProducts }) {
 
     return (
         <FormLayout >
-            <h2>{t('add')} {t('product')}</h2>
+            {formMode === 'edit' ? <h2>{t('edit')} {t('product')}</h2> : <h2>{t('add')} {t('product')}</h2>}
             {/* product name inputs */}
             <Input
                 required={true}
@@ -141,9 +158,14 @@ export default function ProductForm({ setFormOpen, fetchProducts }) {
             <Button
                 style={'btn_primary'}
                 type={'submit'}
-                onClick={(e) => handleAddProduct(e)}
+                onClick={(e)=> formMode === 'edit' ? handleUpdateProduct(e, product.id) : handleAddProduct(e)}
             >
-                {t('add')} {t('product')}
+                {
+                    formMode === 'edit'
+                        ? <><i style={{ marginRight: '0.5rem', fontSize: '1.2rem' }} className="fa-solid fa-pen-to-square"></i> {`${t('edit')} `}</>
+                        :
+                        <><i style={{ marginRight: '0.5rem', fontSize: '1.2rem' }} className="fa-solid fa-circle-plus"></i> {`${t('add')}  ${t('product')}`}</>
+                }
             </Button>
         </FormLayout>
     )

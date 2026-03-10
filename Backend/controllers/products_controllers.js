@@ -5,19 +5,19 @@ const { ObjectId } = require('mongodb');
 // GET METHOD FETCH ALL PRODUCTS
 const getProducts_controller = async (req, res) => {
     try {
-        const lang = req.query.lang || "en";
+        // const lang = req.query.lang || "en";
         const products = await getAllProducts();
-        const translatedProducts = products.map(p => ({
-            ...p,
-            name: p.name[lang],
-            categoryName: p.categoryName[lang],
-            description: p.description[lang]
-        }));
+        // const translatedProducts = products.map(p => ({
+        //     ...p,
+        //     name: p.name[lang],
+        //     categoryName: p.categoryName[lang],
+        //     description: p.description[lang]
+        // }));
         res.json({
-            results: translatedProducts.length,
+            results: products.length,
             success: true,
             message: "Products fetched successfully",
-            data: translatedProducts
+            data: products
         });
     } catch (err) {
         res.status(500).json({

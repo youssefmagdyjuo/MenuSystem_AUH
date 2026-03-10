@@ -6,8 +6,12 @@ import Table from '../components/Table';
 import PopUpLayout from '../components/PopUpLayout';
 import Button from '../components/Button';
 import ProductForm from '../components/ProductForm';
+import { setFullData } from '../features/products/product';
+import { useDispatch } from 'react-redux';
 export default function Products() {
-
+    const [formMode, setFormMode] = useState('add'); // 'add' or 'edit'
+    const [openOptionsId, setOpenOptionsId] = useState(null);
+    const dispatch = useDispatch();
     const [formOpen, setFormOpen] = useState(false);
     // Translation hook
     const { t } = useTranslation();
@@ -16,6 +20,7 @@ export default function Products() {
     const fetchProducts = async () => {
         const products = await getProducts();
         setItems(products);
+        console.log(products)
         // console.log(products)
     }
     useEffect(() => {
@@ -24,9 +29,15 @@ export default function Products() {
         }
         fetchData();
     }, [i18n.language])
-
+    // 2) Map items to include only the current language's name and description, and extract unique categories
+    const filteredItems = items.map(item => ({
+        ...item,
+        name: item.name[i18n.language],
+        description: item.description[i18n.language],
+        categoryName: item.categoryName[i18n.language]
+    }))
     // 2) Extract unique categories from items
-    const categories = [...new Set(items.map(item => item.categoryName))]
+    const categories = [...new Set(filteredItems.map(item => item.categoryName))]
         .map((cat, index) => ({ id: index, name: cat }))
 
     // 3) Define table headers
@@ -55,13 +66,39 @@ export default function Products() {
                         <div key={category.id}>
                             <Table
                                 tableName={category.name}
-                                data={items.filter(item =>
+                                data={filteredItems.filter(item =>
                                     item.categoryName === category.name).map(item =>
                                     ({
                                         ...item, more:
-                                            <i 
-                                            style={{ cursor: 'pointer', width: '100%', textAlign: 'center' }} 
-                                            class="fa-solid fa-ellipsis" ></i>
+                                            <>
+                                                <i
+                                                    onClick={() => openOptionsId == item._id ? setOpenOptionsId(null) : setOpenOptionsId(item._id)}
+                                                    style={{ cursor: 'pointer', width: '100%', textAlign: 'center' }}
+                                                    class="fa-solid fa-ellipsis" ></i>
+                                                    {/* // Show options when "more" icon (...) is clicked */}
+                                                <ul className={`moreOptions ${openOptionsId === item._id ? 'flex' : ''}`}>
+                                                    {/* Edit option */}
+                                                    <li
+                                                        onClick={() => {
+                                                            setFormOpen(true);
+                                                            setFormMode('edit');
+                                                            // Populate the form with the selected product's data
+                                                            dispatch(setFullData(items.find(prod => prod._id === item._id)));
+                                                        }}
+                                                    >
+                                                        <i className="fa-solid fa-edit"></i>
+                                                        {t('edit')}</li>
+                                                        {/* Hide option */}
+                                                    <li>
+                                                        <i class="fa-solid fa-ban"></i>
+                                                        {t('hide')}</li>
+                                                        {/* Delete option */}
+                                                    <li>
+                                                        <i className="fa-solid fa-trash"></i>
+                                                        {t('delete')}</li>
+                                                </ul>
+                                            </>
+
                                     }))} // Add "more" icon to each row
                                 columns={Headers} />
                         </div>
@@ -69,10 +106,10 @@ export default function Products() {
                 }
             </div>
             <PopUpLayout open={formOpen}>
-                <div className='close' onClick={() => setFormOpen(false)}>
+                <div className='close' onClick={() => {setFormOpen(false), setOpenOptionsId(null)}}>
                     <i class="fa-solid fa-xmark"></i>
                 </div>
-                <ProductForm setFormOpen={setFormOpen} fetchProducts={fetchProducts} />
+                <ProductForm setFormOpen={setFormOpen} fetchProducts={fetchProducts} formMode={formMode} setOpenOptionsId={setOpenOptionsId} />
             </PopUpLayout>
         </>
     )

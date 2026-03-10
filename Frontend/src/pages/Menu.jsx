@@ -46,7 +46,8 @@ export default function Menu() {
             <div className="header">
                 <img src="/auhLogo.png" alt="" className='logo' />
                 <div>
-                    <h1>Alexandria Urology Hospital - AUH</h1>
+                    <h1 style={{margin:'0'}}>Alexandria Hospital - AUH</h1>
+                    <h1 style={{color:'var(--green-color)'}}>مستشفى الأسكندرية</h1>
                     <button
                         className='btn btn_primary'
                         data-html2canvas-ignore
