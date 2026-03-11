@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const { getCategories, addCategory, updateCategory, deleteCategory } = require('../controllers/categories_controllers')
+const {editCategoryAvailability, getCategories, addCategory, updateCategory, deleteCategory } = require('../controllers/categories_controllers')
 
 router.route('/')
     .get(getCategories)
@@ -8,5 +8,8 @@ router.route('/')
 router.route('/:id')
     .put(updateCategory)
     .delete(deleteCategory)
+
+router.route('/availablity/:id')
+    .put(editCategoryAvailability)
 
 module.exports = router;

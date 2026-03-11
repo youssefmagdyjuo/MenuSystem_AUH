@@ -28,7 +28,22 @@ const updateCategory = async (categoryId, updateData) => {
     );
     return result;
 };
+//editCategoryAvailablity
+const editCategoryAvailability = async (categoryId, isAvailable) => {
+    const db = getDB();
 
+    const result = await db.collection('categories').updateOne(
+        { _id: new ObjectId(categoryId) },
+        { $set: { isAvailable } }
+    );
+
+    await db.collection('products').updateMany(
+        { categoryId: new ObjectId(categoryId) },
+        { $set: { isAvailable } }
+    );
+
+    return result;
+};
 
 
 // Delete a category from the database
@@ -48,5 +63,6 @@ module.exports = {
     addCategory,
     updateCategory,
     deleteOneCategory,
-    getCategoryNameById
+    getCategoryNameById,
+    editCategoryAvailability
 };

@@ -1,4 +1,4 @@
-const { getAllCategories, addCategory, updateCategory, deleteOneCategory } = require('../services/category_service');
+const { editCategoryAvailability, getAllCategories, addCategory, updateCategory, deleteOneCategory } = require('../services/category_service');
 const { ObjectId } = require('mongodb');
 
 // GET METHOD FETCH ALL CATEGORIES
@@ -65,6 +65,23 @@ const updateCategory_controller = async (req, res) => {
     }
 }
 
+const editCategoryAvailablity_controller = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const { isAvailable } = req.body;
+        const result = await editCategoryAvailability(id, isAvailable);        res.json({
+            success: true,
+            message: "Category availability updated successfully",
+            data: result
+        });
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            message: "Error updating category availability",
+            error: error.message
+        });
+    }
+}
 // DELETE A CATEGORY
 const deleteCategory_controller = async (req, res) => {
     try {
@@ -88,5 +105,6 @@ module.exports = {
     getCategories: getCategories_controller,
     addCategory: addCategory_controller,
     updateCategory: updateCategory_controller,
-    deleteCategory: deleteCategory_controller
+    deleteCategory: deleteCategory_controller,
+    editCategoryAvailability:editCategoryAvailablity_controller
 }

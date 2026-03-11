@@ -25,6 +25,14 @@ export const updateCategory = async (id, category) => {
         console.log(error)
     }
 }
+// edit Category Availability
+export const editCategoryAvailability = async (id, isAvailable) => {
+    try {
+        await axios.put(`/v1/api/categories/availablity/${id}`, isAvailable);
+    } catch (error) {
+        console.log(error)
+    }
+}
 //delete category
 export const deleteCategory = async (id) => {
     try {

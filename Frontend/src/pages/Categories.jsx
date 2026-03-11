@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { deleteCategory, getCategories, updateCategory } from '../hooks/category'
+import { deleteCategory, editCategoryAvailability, getCategories, updateCategory } from '../hooks/category'
 import i18n from '../i18n'
 import Table from '../components/Table'
 import { useTranslation } from 'react-i18next';
@@ -73,7 +73,7 @@ export default function Categories() {
                                 {/* Hide option */}
                                 <li
                                     onClick={async () => {
-                                        await updateCategory(category.id, { isAvailable: !category.isAvailable });
+                                        await editCategoryAvailability(category.id, { isAvailable: !category.isAvailable });
                                         await fetchCategories();
                                         setOpenOptionsId(null);
                                     }}
