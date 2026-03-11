@@ -6,10 +6,14 @@ import { useTranslation } from 'react-i18next';
 import Button from '../components/Button';
 import PopUpLayout from '../components/PopUpLayout';
 import CategoryForm from '../components/CategoryForm';
+import { useDispatch } from 'react-redux';
+import { setFullData } from '../features/categories/category';
 
 export default function Categories() {
     const [openOptionsId, setOpenOptionsId] = useState(null);
+    const [formMode, setFormMode] = useState('add'); // 'add' or 'edit'
     const [formOpen, setFormOpen] = useState(false);
+    const dispatch = useDispatch()
     // Translation hook
     const { t } = useTranslation();
     const [categories, setCategories] = useState([])
@@ -60,16 +64,21 @@ export default function Categories() {
                                     openOptionsId === category.id
                                         ? setOpenOptionsId(null)
                                         : setOpenOptionsId(category.id)
-                                    console.log(openOptionsId);
                                 }}
                                 style={{ cursor: "pointer", width: "100%", textAlign: "center" }}
                                 className="fa-solid fa-ellipsis"
                             ></i>
                             <ul className={`moreOptions ${openOptionsId === category.id ? "flex" : ""}`}>
-                                <li>
+                                {/* Edit option */}
+                                <li
+                                    onClick={() => {
+                                        setFormOpen(true);
+                                        setFormMode('edit');
+                                        dispatch(setFullData(categories.find(cat => cat._id === category.id)));
+                                    }}
+                                >
                                     <i className="fa-solid fa-edit"></i>
-                                    {t('edit')}
-                                </li>
+                                    {t('edit')}</li>
                                 {/* Hide option */}
                                 <li
                                     onClick={async () => {
@@ -113,7 +122,7 @@ export default function Categories() {
                 <div className='close' onClick={() => setFormOpen(false)}>
                     <i class="fa-solid fa-xmark"></i>
                 </div>
-                <CategoryForm setFormOpen={setFormOpen} fetchCategories={fetchCategories} />
+                <CategoryForm setFormOpen={setFormOpen} fetchCategories={fetchCategories} formMode={formMode} setOpenOptionsId={setOpenOptionsId} />
             </PopUpLayout >
         </div >
     )

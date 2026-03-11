@@ -74,14 +74,13 @@ export default function ProductForm({ setFormOpen, fetchProducts, formMode ,setO
         // Reset the form state        
         dispatch(resetProduct());
         // Close options menu if open after updating
-        setOpenOptionsId(null);
+        setOpenOptionsId(null); 
     }
     //handle options to send it to selector
     const categoryOptions = categories.map((cat) => ({
         value: cat._id,
         label: cat.name[i18n.language]
     }));
-    // console.log(categoryOptions);
 
     return (
         <FormLayout >

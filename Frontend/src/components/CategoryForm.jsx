@@ -5,9 +5,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { resetCategory, setDescription, setName } from '../features/categories/category';
 import { useTranslation } from 'react-i18next';
 import { useState } from 'react';
-import { addCategory } from '../hooks/category';
+import { addCategory, updateCategory } from '../hooks/category';
 
-export default function CategoryFormComponent({ setFormOpen, fetchCategories }) {
+export default function CategoryFormComponent({ setFormOpen, fetchCategories, formMode ,setOpenOptionsId}) {
     const [validationErrors, setValidationErrors] = useState({});
     const { t } = useTranslation();
     const dispatch = useDispatch();
@@ -35,7 +35,22 @@ export default function CategoryFormComponent({ setFormOpen, fetchCategories }) 
         setFormOpen(false);
         dispatch(resetCategory());
     }
-
+    const handleUpdateCategory = async (e,id) => {
+        e.preventDefault();        
+        if (!validateForm()) {
+            return;
+        }
+        // Logic to update the category
+        await updateCategory(id, category);
+        // Refresh the category list after updating
+        await fetchCategories();
+        // Close the form after updating
+        setFormOpen(false);
+        // Reset the form state        
+        dispatch(resetCategory());
+        // Close options menu if open after updating
+        setOpenOptionsId(null);
+    }
     return (
         <FormLayout>
             <h2>{t('add')} {t('category')}</h2>
@@ -84,9 +99,14 @@ export default function CategoryFormComponent({ setFormOpen, fetchCategories }) 
             <Button
                 style={'btn_primary'}
                 type={'submit'}
-                onClick={(e) => handleAddCategory(e)}
+            onClick={(e) => formMode === 'edit' ? handleUpdateCategory(e, category.id) : handleAddCategory(e)}
             >
-                {t('add')} {t('category')}
+                {
+                    formMode === 'edit'
+                        ? <><i style={{ marginRight: '0.5rem', fontSize: '1.2rem' }} className="fa-solid fa-pen-to-square"></i> {`${t('edit')} `}</>
+                        :
+                        <><i style={{ marginRight: '0.5rem', fontSize: '1.2rem' }} className="fa-solid fa-circle-plus"></i> {t('add')} {t('category')}</>
+                }
             </Button>
         </FormLayout>
     )

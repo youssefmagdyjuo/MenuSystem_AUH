@@ -34,6 +34,7 @@ body {
   justify-content: center;
   border-radius: 0.5rem;
   background-color: rgba(0, 0, 0, 0.1);
+  z-index: 10000;
 
 }
 
@@ -152,6 +153,7 @@ table tr:hover {
 
 /* nav bar  */
 .navbar_container {
+  position: relative;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -178,6 +180,10 @@ table tr:hover {
   height: 100%;
   align-items: center;
   padding: 1rem;
+  place-self: center;
+  position: absolute;
+  left: 50%;
+  right: 50%;
 
 }
 

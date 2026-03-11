@@ -26,6 +26,12 @@ const updateCategory = async (categoryId, updateData) => {
         { _id: new ObjectId(categoryId) },
         { $set: updateData }
     );
+    const category = await db.collection('categories').findOne({ _id: new ObjectId(categoryId) });
+    //update category name in products related
+    await db.collection('products').updateMany(
+        { categoryId: new ObjectId(categoryId) },
+        { $set: { categoryName: category.name } }
+    );
     return result;
 };
 //editCategoryAvailablity

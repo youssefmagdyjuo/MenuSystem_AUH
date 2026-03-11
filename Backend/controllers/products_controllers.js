@@ -5,14 +5,7 @@ const { ObjectId } = require('mongodb');
 // GET METHOD FETCH ALL PRODUCTS
 const getProducts_controller = async (req, res) => {
     try {
-        // const lang = req.query.lang || "en";
         const products = await getAllProducts();
-        // const translatedProducts = products.map(p => ({
-        //     ...p,
-        //     name: p.name[lang],
-        //     categoryName: p.categoryName[lang],
-        //     description: p.description[lang]
-        // }));
         res.json({
             results: products.length,
             success: true,

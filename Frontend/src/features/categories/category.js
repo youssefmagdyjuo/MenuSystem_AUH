@@ -22,7 +22,13 @@ const categorySlice = createSlice({
             const { lang, value } = action.payload;
             state.description[lang] = value;
         },
+        setFullData: (state, action) => {
+            const { name, description ,_id} = action.payload;
+            state.name = name;
+            state.description = description;
+            state.id = _id;
 
+        },
         resetCategory: (state) => {
             state.name = { en: "", ar: "" };
             state.description = { en: "", ar: "" };
@@ -33,6 +39,7 @@ const categorySlice = createSlice({
 export const {
     setName,
     setDescription,
+    setFullData,
     resetCategory
 } = categorySlice.actions;
 

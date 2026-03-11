@@ -19,9 +19,9 @@ export default function NavBar() {
                     <li>
                         <Link to="/categories"> {t("categories")} </Link>
                     </li>
-                    <li>
+                    {/* <li>
                         <Link to="/users"> {t("users")} </Link>
-                    </li>
+                    </li> */}
                     
                 </ul>
                 <div></div>
