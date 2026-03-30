@@ -16,7 +16,6 @@ export default function ProductForm({ setFormOpen, fetchProducts, formMode, setO
         const fetchCategories = async () => {
             const resulte = await getCategories()
             setCategories(resulte)
-
         }
         fetchCategories();
     }, [])
@@ -158,10 +157,11 @@ export default function ProductForm({ setFormOpen, fetchProducts, formMode, setO
             <Selector
                 options={categoryOptions}
                 placeholder={`${t('select')} ${t('category')}`}
-                onChange={(selected) =>
+                onChange={async(selected) => {
                     dispatch(
                         setCategory(selected.value)
-                    )
+                    )                    
+                }
                 }
                 required={true}
             />

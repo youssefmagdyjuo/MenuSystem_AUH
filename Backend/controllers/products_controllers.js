@@ -54,6 +54,10 @@ const updateProduct_controller = async (req, res) => {
     try {
         const { id } = req.params;
         const updateData = req.body;
+        const categoryName = await getCategoryNameById(updateData.categoryId);
+        if (categoryName) {
+            updateData.categoryName = categoryName;
+        }
         const result = await updateProduct(id, updateData);
         res.json({
             success: true,

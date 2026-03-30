@@ -14,6 +14,7 @@ const addProduct = async (productData) => {
 // Update a product in the database
 const updateProduct = async (productId, updateData) => {
     const db = getDB();
+    console.log(updateData)
     const result = await db.collection('products').updateOne(
         { _id: new ObjectId(productId) },
         { $set: updateData }
