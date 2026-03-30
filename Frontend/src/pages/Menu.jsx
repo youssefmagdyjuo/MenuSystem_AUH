@@ -34,8 +34,8 @@ export default function Menu() {
     const Headers = [
         { key: "name", label: t('name') },
         { key: "description", label: t('description') },
-        { key: "price", label: t('price') },
-    ]
+        { key: "price.staff", label: `${t('price')} -  ${t('staff')}` },
+        { key: "price.guest", label: `${t('price')} -  ${t('guest')}` },    ]
 
     // Handle menu download as PDF
     const handleDownload = async () => {

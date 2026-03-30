@@ -9,7 +9,7 @@ import { getCategories } from '../hooks/category';
 import Selector from './Selector';
 import i18n from '../i18n';
 import { addProduct, updateProduct } from '../hooks/products';
-export default function ProductForm({ setFormOpen, fetchProducts, formMode ,setOpenOptionsId}) {
+export default function ProductForm({ setFormOpen, fetchProducts, formMode, setOpenOptionsId }) {
     const [categories, setCategories] = useState([])
     const [validationErrors, setValidationErrors] = useState({});
     useEffect(() => {
@@ -59,7 +59,7 @@ export default function ProductForm({ setFormOpen, fetchProducts, formMode ,setO
         dispatch(resetProduct());
     }
     //update product function will be added here in the future
-    const handleUpdateProduct = async (e,id) => {
+    const handleUpdateProduct = async (e, id) => {
         e.preventDefault();
         //validation check
         if (!validateForm()) {
@@ -74,7 +74,7 @@ export default function ProductForm({ setFormOpen, fetchProducts, formMode ,setO
         // Reset the form state        
         dispatch(resetProduct());
         // Close options menu if open after updating
-        setOpenOptionsId(null); 
+        setOpenOptionsId(null);
     }
     //handle options to send it to selector
     const categoryOptions = categories.map((cat) => ({
@@ -132,13 +132,25 @@ export default function ProductForm({ setFormOpen, fetchProducts, formMode ,setO
             />
             <p className={validationErrors.descriptionEn ? "error" : 'none'}>{validationErrors.descriptionEn}</p>
             {/* product price input */}
+            {/* price staff */}
             <Input
                 required={true}
-                value={product.price}
-                placeholder={`${t('price')}`}
+                value={product.price.staff}
+                placeholder={`${t('price')} - ${t('staff')}`}
                 type={'number'}
-                label={` ${t('price')}`}
-                onChange={(e) => dispatch(setPrice(Number(e.target.value)))}
+                label={` ${t('price')} - ${t('staff')}`}
+                onChange={(e) => dispatch(setPrice({ role: "staff", value: Number(e.target.value) }))}
+
+            />
+            <p className={validationErrors.price ? "error" : 'none'} >{validationErrors.price}</p>
+            {/* price guest */}
+            <Input
+                required={true}
+                value={product.price.guest}
+                placeholder={`${t('price')} - ${t('guest')}`}
+                type={'number'}
+                label={` ${t('price')} - ${t('guest')}`}
+                onChange={(e) => dispatch(setPrice({ role: "guest", value: Number(e.target.value) }))}
 
             />
             <p className={validationErrors.price ? "error" : 'none'} >{validationErrors.price}</p>
@@ -157,7 +169,7 @@ export default function ProductForm({ setFormOpen, fetchProducts, formMode ,setO
             <Button
                 style={'btn_primary'}
                 type={'submit'}
-                onClick={(e)=> formMode === 'edit' ? handleUpdateProduct(e, product.id) : handleAddProduct(e)}
+                onClick={(e) => formMode === 'edit' ? handleUpdateProduct(e, product.id) : handleAddProduct(e)}
             >
                 {
                     formMode === 'edit'

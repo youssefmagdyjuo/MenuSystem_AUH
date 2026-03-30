@@ -113,7 +113,7 @@ table td:nth-child(2) {
   width: 50%;
 } */
 table td:nth-last-child(1){
-  max-width: 15%;
+  max-width: 23%;
   width: 100%;
 }
 table tr:hover {

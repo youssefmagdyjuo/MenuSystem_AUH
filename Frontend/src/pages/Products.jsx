@@ -20,7 +20,6 @@ export default function Products() {
     const fetchProducts = async () => {
         const products = await getProducts();
         setItems(products);
-        console.log(products)
         // console.log(products)
     }
     useEffect(() => {
@@ -44,7 +43,8 @@ export default function Products() {
     const Headers = [
         { key: "name", label: t('name') },
         { key: "description", label: t('description') },
-        { key: "price", label: t('price') },
+        { key: "price.staff", label: `${t('price')} -  ${t('staff')}` },
+        { key: "price.guest", label: `${t('price')} -  ${t('guest')}` },
         { key: "isAvailable", label: t('isAvailable') },
         { key: "more", label: t('more') },
     ]

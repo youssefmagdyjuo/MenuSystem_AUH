@@ -11,7 +11,10 @@ const productSlice = createSlice({
             en: "",
             ar: ""
         },
-        price: '',
+        price: {
+                staff: '',
+                guest: ''
+        },
         categoryId: '',
         categoryName: '',
         id:''
@@ -39,7 +42,8 @@ const productSlice = createSlice({
         },
 
         setPrice: (state, action) => {
-            state.price = action.payload;
+            const { role, value } = action.payload;
+            state.price[role] = value;
         },
 
         setCategory: (state, action) => {
