@@ -160,6 +160,9 @@ table tr:hover {
   padding: 0.5rem;
   height: 5rem;
   box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.212);
+  left: 0;
+  right: 0;
+  width: 100%;
 }
 
 .navbar_logo {
