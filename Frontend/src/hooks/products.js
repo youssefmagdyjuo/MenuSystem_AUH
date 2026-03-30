@@ -15,7 +15,7 @@ export const capitalizeWords = (text) => {
 export const getProducts = async () => {
     try {
         // const lang = i18n.language || "en";
-        const response = await axios.get(`/v1/api/products`);
+        const response = await axios.get(`${import.meta.env.VITE_API_URL}/v1/api/products`);
         return response.data.data;
     } catch (error) {
         console.error("Error fetching products:", error);
@@ -25,7 +25,7 @@ export const getProducts = async () => {
 // Function to add a new product
 export const addProduct = async (productData) => {
     try {
-        const response = await axios.post('/v1/api/products', productData);
+        const response = await axios.post(`${import.meta.env.VITE_API_URL}/v1/api/products`, productData);
         return response.data;
     } catch (error) {
         console.error("Error adding product:", error);
@@ -35,7 +35,7 @@ export const addProduct = async (productData) => {
 // Function to update a product by ID
 export const updateProduct = async (productId, updatedData) => {
     try {
-        const response = await axios.put(`/v1/api/products/${productId}`, updatedData);
+        const response = await axios.put(`${import.meta.env.VITE_API_URL}/v1/api/products/${productId}`, updatedData);
         return response.data;
     } catch (error) {
         console.error("Error updating product:", error);
@@ -46,7 +46,7 @@ export const updateProduct = async (productId, updatedData) => {
 // Function to delete a product by ID
 export const deleteProduct = async (productId) => {
     try {
-        const response = await axios.delete(`/v1/api/products/${productId}`);
+        const response = await axios.delete(`${import.meta.env.VITE_API_URL}/v1/api/products/${productId}`);
         return response.data;
     } catch (error) {
         console.error("Error deleting product:", error);

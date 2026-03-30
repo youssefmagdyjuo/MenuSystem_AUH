@@ -6,7 +6,7 @@ export default defineConfig({
   plugins: [react()],
   server: {
     proxy: {
-      '/v1/api': 'https://menusystem-auh.onrender.com',
+      '/v1/api': 'http://localhost:5000/',
     },
   },
 })
