@@ -1,5 +1,4 @@
 const express = require("express");
-const mongoose = require("mongoose");
 const cors = require("cors");
 const dotenv = require("dotenv");
 
@@ -7,6 +6,7 @@ const { connectDB, getDB } = require('./db');
 const PORT = process.env.PORT || 5000;
 const productsRoutes = require('./routes/products_routes')
 const categoriesRoutes = require('./routes/categories_routes')
+const usersRoutes = require('./routes/users_routes')
 dotenv.config();
 // Initialize Express app
 const app = express();
@@ -21,15 +21,29 @@ app.get("/", (req, res) => {
 });
 app.use('/v1/api/products', productsRoutes)
 app.use('/v1/api/categories', categoriesRoutes)
+app.use('/v1/api/users', usersRoutes)
 // Connect to MongoDB
 let db;
+// connectDB((error) => {
+//     if (!error) {
+//         // Start the server
+//         app.listen(PORT, () => {
+//             console.log(`Server running on port ${PORT}`);
+//         });
+//         db = getDB();
+//     }
+//     console.log("Database connected successfully");
+// })
 connectDB((error) => {
     if (!error) {
-        // Start the server
         app.listen(PORT, () => {
             console.log(`Server running on port ${PORT}`);
         });
-        db = getDB();
+
+        console.log("Database connected successfully");
+    } else {
+        console.log("Failed to connect to DB");
     }
-    console.log("Database connected successfully");
-})
+});
+
+
