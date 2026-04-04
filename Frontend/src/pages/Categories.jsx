@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { deleteCategory, editCategoryAvailability, getCategories, updateCategory } from '../hooks/category'
+import { deleteCategory, editCategoryAvailability, getCategories } from '../hooks/category'
 import i18n from '../i18n'
 import Table from '../components/Table'
 import { useTranslation } from 'react-i18next';
@@ -54,6 +54,8 @@ export default function Categories() {
                 </Button>
             </div>
             <Table
+                tableType='categories'
+            fetchCategories={fetchCategories}
                 columns={Headers}
                 data={filteredCategoriesByLanguage.map(category => ({
                     ...category,
@@ -68,6 +70,7 @@ export default function Categories() {
                                 style={{ cursor: "pointer", width: "100%", textAlign: "center" }}
                                 className="fa-solid fa-ellipsis"
                             ></i>
+                            {/* // Show options only for the selected category */}
                             <ul className={`moreOptions ${openOptionsId === category.id ? "flex" : ""}`}>
                                 {/* Edit option */}
                                 <li
@@ -80,7 +83,7 @@ export default function Categories() {
                                     <i className="fa-solid fa-edit"></i>
                                     {t('edit')}</li>
                                 {/* Hide option */}
-                                <li
+                                {/* <li
                                     onClick={async () => {
                                         await editCategoryAvailability(category.id, { isAvailable: !category.isAvailable });
                                         await fetchCategories();
@@ -100,7 +103,7 @@ export default function Categories() {
                                             </>
                                         )
                                     }
-                                </li>
+                                </li> */}
                                 {/* Delete option */}
                                 <li
                                     onClick={async () => {

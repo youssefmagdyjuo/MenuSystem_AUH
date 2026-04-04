@@ -68,6 +68,8 @@ export default function Products() {
                         .map(category => (
                             <div className='overflow-x-scroll' key={category.id}>
                                 <Table
+                                    tableType='products'
+                                fetchProducts={fetchProducts}
                                     tableName={category.name}
                                     data={filteredItems.filter(item =>
                                         item.categoryName === category.name).map(item =>

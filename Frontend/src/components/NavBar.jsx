@@ -7,7 +7,7 @@ export default function NavBar() {
         <div className="navbar_container">
                 <div className="navbar_logo">
                     <img src="/auhLogo.png" alt="AUH Logo" />
-                    <p>AUH Menu System v1.0</p>
+                    <p>AUH MMS v1.0</p>
                 </div>
                 <ul className="navbar_links">
                     <li>

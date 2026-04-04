@@ -66,7 +66,13 @@ input ,.selector{
     font-size: 1rem;
     color: var(--black);
 }
-
+input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    accent-color: var(--blue-color);
+    
+}
 /*popup*/
 .PopUpLayout_container {
     position: fixed;

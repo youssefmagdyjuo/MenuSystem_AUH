@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function Input({ type, placeholder, value, onChange, label,required }) {
+export default function Input({checked, type, placeholder, value, onChange, label,required }) {
     return (
         <div className="input_container">
             <label>{label}</label>
@@ -10,6 +10,7 @@ export default function Input({ type, placeholder, value, onChange, label,requir
                 placeholder={placeholder}
                 value={value}
                 onChange={onChange}
+                checked={checked}
             />
         </div>
     )
