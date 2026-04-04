@@ -6,7 +6,7 @@ import Table from '../components/Table';
 import PopUpLayout from '../components/PopUpLayout';
 import Button from '../components/Button';
 import ProductForm from '../components/ProductForm';
-import { setFullData } from '../features/products/product';
+import { resetProduct, setFullData } from '../features/products/product';
 import { useDispatch } from 'react-redux';
 export default function Products() {
     const [formMode, setFormMode] = useState('add'); // 'add' or 'edit'
@@ -66,7 +66,7 @@ export default function Products() {
                 {
                     categories
                         .map(category => (
-                            <div className='overflow-x-scroll lg:overflow-x-visible' key={category.id}>
+                            <div className='overflow-x-auto lg:overflow-x-visible' key={category.id}>
                                 <Table
                                     tableType='products'
                                 fetchProducts={fetchProducts}
@@ -137,7 +137,7 @@ export default function Products() {
                 }
             </div>
             <PopUpLayout open={formOpen}>
-                <div className='close' onClick={() => { setFormOpen(false), setOpenOptionsId(null) }}>
+                <div className='close' onClick={() => { setFormOpen(false), setOpenOptionsId(null) , dispatch(resetProduct())}}>
                     <i class="fa-solid fa-xmark"></i>
                 </div>
                 <ProductForm setFormOpen={setFormOpen} fetchProducts={fetchProducts} formMode={formMode} setOpenOptionsId={setOpenOptionsId} />
