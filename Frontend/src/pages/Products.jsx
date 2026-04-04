@@ -66,7 +66,7 @@ export default function Products() {
                 {
                     categories
                         .map(category => (
-                            <div className='overflow-x-scroll' key={category.id}>
+                            <div className='overflow-x-scroll lg:overflow-x-visible' key={category.id}>
                                 <Table
                                     tableType='products'
                                 fetchProducts={fetchProducts}
@@ -94,7 +94,7 @@ export default function Products() {
                                                             <i className="fa-solid fa-edit"></i>
                                                             {t('edit')}</li>
                                                         {/* Hide option */}
-                                                        <li
+                                                        {/* <li
                                                             onClick={async () => {
                                                                 await updateProduct(item._id, { isAvailable: !item.isAvailable });
                                                                 await fetchProducts();
@@ -114,7 +114,7 @@ export default function Products() {
                                                                     </>
                                                                 )
                                                             }
-                                                        </li>
+                                                        </li> */}
                                                         {/* Delete option */}
                                                         <li
                                                             onClick={async () => {

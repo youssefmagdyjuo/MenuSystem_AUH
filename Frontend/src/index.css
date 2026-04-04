@@ -68,7 +68,9 @@ body {
   color: var(--blue-color);
 }
 
-.products_table {}
+/* .test{
+  overflow-x: auto;
+} */
 
 table {
   width: 100%;
