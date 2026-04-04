@@ -127,10 +127,10 @@ table tr:hover {
 
 .moreOptions {
   position: absolute;
-  top: 2rem;
+  top: 0.5rem;
   place-self: end;
   width: 10rem;
-  height: 8rem;
+  height: 5rem;
   background-color: var(--background-color);
   box-shadow: 0 0 1rem rgba(0, 0, 0, 0.176);
   border-radius: 0.4rem;
