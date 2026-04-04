@@ -54,7 +54,7 @@
     font-weight: 600;
 }
 
-input ,.selector{
+input {
     padding: 1rem;
     border: 1px solid var(--light-gray);
     border-radius: 0.4rem;
