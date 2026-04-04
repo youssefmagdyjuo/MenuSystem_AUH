@@ -137,7 +137,7 @@ export default function Products() {
                 }
             </div>
             <PopUpLayout open={formOpen}>
-                <div className='close' onClick={() => { setFormOpen(false), setOpenOptionsId(null) , dispatch(resetProduct())}}>
+                <div className='close' onClick={() => { setFormOpen(false), setOpenOptionsId(null) , dispatch(resetProduct(),setFormMode('add'))}}>
                     <i class="fa-solid fa-xmark"></i>
                 </div>
                 <ProductForm setFormOpen={setFormOpen} fetchProducts={fetchProducts} formMode={formMode} setOpenOptionsId={setOpenOptionsId} />
