@@ -85,82 +85,89 @@ export default function ProductForm({ setFormOpen, fetchProducts, formMode, setO
         <FormLayout >
             {formMode === 'edit' ? <h2>{t('edit')} {t('product')}</h2> : <h2>{t('add')} {t('product')}</h2>}
             {/* product name inputs */}
-            <Input
-                required={true}
-                value={product.name.ar}
-                placeholder={`${t('name')} - ${t('arabic')}`}
-                type={'text'}
-                label={` ${t('name')} - ${t('arabic')}`}
-                onChange={(e) =>
-                    dispatch(setName({ lang: "ar", value: e.target.value }))
-                }
-            />
-            <p className={validationErrors.nameAr ? "error" : 'none'}>{validationErrors.nameAr}</p>
-            <Input
-                required={true}
-                value={product.name.en}
-                placeholder={`${t('name')} - ${t('english')}`}
-                type={'text'}
-                onChange={(e) =>
-                    dispatch(setName({ lang: "en", value: e.target.value }))
-                }
-                label={` ${t('name')} - ${t('english')}`}
-            />
-            <p className={validationErrors.nameEn ? "error" : 'none'}>{validationErrors.nameEn}</p>
+            <div className='flex gap-2'>
+                <Input
+                    required={true}
+                    value={product.name.ar}
+                    placeholder={`${t('name')} - ${t('arabic')}`}
+                    type={'text'}
+                    label={` ${t('name')} - ${t('arabic')}`}
+                    onChange={(e) =>
+                        dispatch(setName({ lang: "ar", value: e.target.value }))
+                    }
+                />
+                <p className={validationErrors.nameAr ? "error" : 'none'}>{validationErrors.nameAr}</p>
+                <Input
+                    required={true}
+                    value={product.name.en}
+                    placeholder={`${t('name')} - ${t('english')}`}
+                    type={'text'}
+                    onChange={(e) =>
+                        dispatch(setName({ lang: "en", value: e.target.value }))
+                    }
+                    label={` ${t('name')} - ${t('english')}`}
+                />
+                <p className={validationErrors.nameEn ? "error" : 'none'}>{validationErrors.nameEn}</p>
+
+            </div>
             {/* product description inputs */}
-            <Input
-                required={true}
-                value={product.description.ar}
-                placeholder={`${t('description')} - ${t('arabic')}`}
-                type={'text'}
-                label={` ${t('description')} - ${t('arabic')}`}
-                onChange={(e) =>
-                    dispatch(setDescription({ lang: "ar", value: e.target.value }))
-                }
-            />
-            <p className={validationErrors.descriptionAr ? "error" : 'none'}>{validationErrors.descriptionAr}</p>
-            <Input
-                required={true}
-                value={product.description.en}
-                placeholder={`${t('description')} - ${t('english')}`}
-                type={'text'}
-                onChange={(e) =>
-                    dispatch(setDescription({ lang: "en", value: e.target.value }))
-                }
-                label={` ${t('description')} - ${t('english')}`}
-            />
-            <p className={validationErrors.descriptionEn ? "error" : 'none'}>{validationErrors.descriptionEn}</p>
+            <div className='flex gap-2'>
+                <Input
+                    required={true}
+                    value={product.description.ar}
+                    placeholder={`${t('description')} - ${t('arabic')}`}
+                    type={'text'}
+                    label={` ${t('description')} - ${t('arabic')}`}
+                    onChange={(e) =>
+                        dispatch(setDescription({ lang: "ar", value: e.target.value }))
+                    }
+                />
+                <p className={validationErrors.descriptionAr ? "error" : 'none'}>{validationErrors.descriptionAr}</p>
+                <Input
+                    required={true}
+                    value={product.description.en}
+                    placeholder={`${t('description')} - ${t('english')}`}
+                    type={'text'}
+                    onChange={(e) =>
+                        dispatch(setDescription({ lang: "en", value: e.target.value }))
+                    }
+                    label={` ${t('description')} - ${t('english')}`}
+                />
+                <p className={validationErrors.descriptionEn ? "error" : 'none'}>{validationErrors.descriptionEn}</p>
+            </div>
             {/* product price input */}
-            {/* price staff */}
-            <Input
-                required={true}
-                value={product.price.staff}
-                placeholder={`${t('price')} - ${t('staff')}`}
-                type={'number'}
-                label={` ${t('price')} - ${t('staff')}`}
-                onChange={(e) => dispatch(setPrice({ role: "staff", value: Number(e.target.value) }))}
+            <div className='flex gap-2'>
+                {/* price staff */}
+                <Input
+                    required={true}
+                    value={product.price.staff}
+                    placeholder={`${t('price')} - ${t('staff')}`}
+                    type={'number'}
+                    label={` ${t('price')} - ${t('staff')}`}
+                    onChange={(e) => dispatch(setPrice({ role: "staff", value: Number(e.target.value) }))}
 
-            />
-            <p className={validationErrors.price ? "error" : 'none'} >{validationErrors.price}</p>
-            {/* price guest */}
-            <Input
-                required={true}
-                value={product.price.guest}
-                placeholder={`${t('price')} - ${t('guest')}`}
-                type={'number'}
-                label={` ${t('price')} - ${t('guest')}`}
-                onChange={(e) => dispatch(setPrice({ role: "guest", value: Number(e.target.value) }))}
+                />
+                <p className={validationErrors.price ? "error" : 'none'} >{validationErrors.price}</p>
+                {/* price guest */}
+                <Input
+                    required={true}
+                    value={product.price.guest}
+                    placeholder={`${t('price')} - ${t('guest')}`}
+                    type={'number'}
+                    label={` ${t('price')} - ${t('guest')}`}
+                    onChange={(e) => dispatch(setPrice({ role: "guest", value: Number(e.target.value) }))}
 
-            />
-            <p className={validationErrors.price ? "error" : 'none'} >{validationErrors.price}</p>
+                />
+                <p className={validationErrors.price ? "error" : 'none'} >{validationErrors.price}</p>
+            </div>
             {/* choose category  */}
             <Selector
                 options={categoryOptions}
                 placeholder={`${t('select')} ${t('category')}`}
-                onChange={async(selected) => {
+                onChange={async (selected) => {
                     dispatch(
                         setCategory(selected.value)
-                    )                    
+                    )
                 }
                 }
                 required={true}

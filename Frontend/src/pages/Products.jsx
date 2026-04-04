@@ -61,76 +61,77 @@ export default function Products() {
                     <i style={{ marginRight: '0.5rem', fontSize: '1.2rem' }} class="fa-solid fa-circle-plus"></i> {`${t('add')}  ${t('product')}`}
                 </Button>
             </div>
+
             <div className='products_table'>
                 {
                     categories
-                    .map(category => (
-                        <div key={category.id}>
-                            <Table
-                                tableName={category.name}
-                                data={filteredItems.filter(item =>
-                                    item.categoryName === category.name).map(item =>
-                                    ({
-                                        ...item, more:
-                                            <>
-                                                <i
-                                                    onClick={() => openOptionsId == item._id ? setOpenOptionsId(null) : setOpenOptionsId(item._id)}
-                                                    style={{ cursor: 'pointer', width: '100%', textAlign: 'center' }}
-                                                    class="fa-solid fa-ellipsis" ></i>
-                                                {/* // Show options when "more" icon (...) is clicked */}
-                                                <ul className={`moreOptions ${openOptionsId === item._id ? 'flex' : ''}`}>
-                                                    {/* Edit option */}
-                                                    <li
-                                                        onClick={() => {
-                                                            setFormOpen(true);
-                                                            setFormMode('edit');
-                                                            // Populate the form with the selected product's data
-                                                            dispatch(setFullData(items.find(prod => prod._id === item._id)));
-                                                        }}
-                                                    >
-                                                        <i className="fa-solid fa-edit"></i>
-                                                        {t('edit')}</li>
-                                                    {/* Hide option */}
-                                                    <li
-                                                        onClick={async () => {
-                                                            await updateProduct(item._id, { isAvailable: !item.isAvailable });
-                                                            await fetchProducts();
-                                                            setOpenOptionsId(null);
-                                                        }}
-                                                    >
-                                                        {
-                                                            item.isAvailable ? (
-                                                                <>
-                                                                    <i class="fa-solid fa-ban"></i>
-                                                                    {t('hide')}
-                                                                </>
-                                                            ) : (
-                                                                <>
-                                                                    <i class="fa-solid fa-eye"></i>
-                                                                    {t('show')}
-                                                                </>
-                                                            )
-                                                        }
+                        .map(category => (
+                            <div className='overflow-x-scroll' key={category.id}>
+                                <Table
+                                    tableName={category.name}
+                                    data={filteredItems.filter(item =>
+                                        item.categoryName === category.name).map(item =>
+                                        ({
+                                            ...item, more:
+                                                <>
+                                                    <i
+                                                        onClick={() => openOptionsId == item._id ? setOpenOptionsId(null) : setOpenOptionsId(item._id)}
+                                                        style={{ cursor: 'pointer', width: '100%', textAlign: 'center' }}
+                                                        class="fa-solid fa-ellipsis" ></i>
+                                                    {/* // Show options when "more" icon (...) is clicked */}
+                                                    <ul className={`moreOptions ${openOptionsId === item._id ? 'flex' : ''}`}>
+                                                        {/* Edit option */}
+                                                        <li
+                                                            onClick={() => {
+                                                                setFormOpen(true);
+                                                                setFormMode('edit');
+                                                                // Populate the form with the selected product's data
+                                                                dispatch(setFullData(items.find(prod => prod._id === item._id)));
+                                                            }}
+                                                        >
+                                                            <i className="fa-solid fa-edit"></i>
+                                                            {t('edit')}</li>
+                                                        {/* Hide option */}
+                                                        <li
+                                                            onClick={async () => {
+                                                                await updateProduct(item._id, { isAvailable: !item.isAvailable });
+                                                                await fetchProducts();
+                                                                setOpenOptionsId(null);
+                                                            }}
+                                                        >
+                                                            {
+                                                                item.isAvailable ? (
+                                                                    <>
+                                                                        <i class="fa-solid fa-ban"></i>
+                                                                        {t('hide')}
+                                                                    </>
+                                                                ) : (
+                                                                    <>
+                                                                        <i class="fa-solid fa-eye"></i>
+                                                                        {t('show')}
+                                                                    </>
+                                                                )
+                                                            }
                                                         </li>
-                                                    {/* Delete option */}
-                                                    <li
-                                                    onClick={async()=>{
-                                                        if(window.confirm(t('delete') + ' ' + item.name + '?')){
-                                                            await deleteProduct(item._id);
-                                                            await fetchProducts();
-                                                            setOpenOptionsId(null);
-                                                        }
-                                                    }}  
-                                                    >
-                                                        <i className="fa-solid fa-trash"></i>
-                                                        {t('delete')}</li>
-                                                </ul>
-                                            </>
+                                                        {/* Delete option */}
+                                                        <li
+                                                            onClick={async () => {
+                                                                if (window.confirm(t('delete') + ' ' + item.name + '?')) {
+                                                                    await deleteProduct(item._id);
+                                                                    await fetchProducts();
+                                                                    setOpenOptionsId(null);
+                                                                }
+                                                            }}
+                                                        >
+                                                            <i className="fa-solid fa-trash"></i>
+                                                            {t('delete')}</li>
+                                                    </ul>
+                                                </>
 
-                                    }))} // Add "more" icon to each row
-                                columns={Headers} />
-                        </div>
-                    ))
+                                        }))} // Add "more" icon to each row
+                                    columns={Headers} />
+                            </div>
+                        ))
                 }
             </div>
             <PopUpLayout open={formOpen}>

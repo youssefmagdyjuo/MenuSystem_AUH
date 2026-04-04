@@ -53,7 +53,7 @@ const productSlice = createSlice({
         resetProduct: (state) => {
             state.name = { en: "", ar: "" };
             state.description = { en: "", ar: "" };
-            state.price = 0;
+            state.price = { staff: '', guest: '' };
             state.categoryId = null;
         }
     }

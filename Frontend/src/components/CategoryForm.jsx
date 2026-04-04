@@ -7,7 +7,7 @@ import { useTranslation } from 'react-i18next';
 import { useState } from 'react';
 import { addCategory, updateCategory } from '../hooks/category';
 
-export default function CategoryFormComponent({ setFormOpen, fetchCategories, formMode ,setOpenOptionsId}) {
+export default function CategoryFormComponent({ setFormOpen, fetchCategories, formMode, setOpenOptionsId }) {
     const [validationErrors, setValidationErrors] = useState({});
     const { t } = useTranslation();
     const dispatch = useDispatch();
@@ -35,8 +35,8 @@ export default function CategoryFormComponent({ setFormOpen, fetchCategories, fo
         setFormOpen(false);
         dispatch(resetCategory());
     }
-    const handleUpdateCategory = async (e,id) => {
-        e.preventDefault();        
+    const handleUpdateCategory = async (e, id) => {
+        e.preventDefault();
         if (!validateForm()) {
             return;
         }
@@ -54,52 +54,56 @@ export default function CategoryFormComponent({ setFormOpen, fetchCategories, fo
     return (
         <FormLayout>
             <h2>{t('add')} {t('category')}</h2>
-            <Input
-                required={true}
-                value={category.name.ar}
-                placeholder={`${t('name')} - ${t('arabic')}`}
-                type={'text'}
-                label={`${t('name')} - ${t('arabic')}`}
-                onChange={(e) =>
-                    dispatch(setName({ lang: "ar", value: e.target.value }))
-                }
-            />
-            <p className={validationErrors.nameAr ? "error" : 'none'}>{validationErrors.nameAr}</p>
-            <Input
-                required={true}
-                value={category.name.en}
-                placeholder={`${t('name')} - ${t('english')}`}
-                type={'text'}
-                label={`${t('name')} - ${t('english')}`}
-                onChange={(e) =>
-                    dispatch(setName({ lang: "en", value: e.target.value }))
-                }
-            />
-            <p className={validationErrors.nameEn ? "error" : 'none'}>{validationErrors.nameEn}</p>
-            <Input
-                value={category.description.ar}
-                placeholder={`${t('description')} - ${t('arabic')}`}
-                type={'text'}
-                label={`${t('description')} - ${t('arabic')}`}
-                onChange={(e) =>
-                    dispatch(setDescription({ lang: "ar", value: e.target.value }))
-                }
-            />
-            <p className={validationErrors.descriptionAr ? "error" : 'none'}>{validationErrors.descriptionAr}</p>
-            <Input
-                value={category.description.en}
-                placeholder={`${t('description')} - ${t('english')}`}
-                type={'text'}
-                label={`${t('description')} - ${t('english')}`}
-                onChange={(e) =>
-                    dispatch(setDescription({ lang: "en", value: e.target.value }))
-                }
-            />
-            <p className={validationErrors.descriptionEn ? "error" : 'none'}>{validationErrors.descriptionEn}</p>
+            <div className='flex gap-2'>
+                <Input
+                    required={true}
+                    value={category.name.ar}
+                    placeholder={`${t('name')} - ${t('arabic')}`}
+                    type={'text'}
+                    label={`${t('name')} - ${t('arabic')}`}
+                    onChange={(e) =>
+                        dispatch(setName({ lang: "ar", value: e.target.value }))
+                    }
+                />
+                <p className={validationErrors.nameAr ? "error" : 'none'}>{validationErrors.nameAr}</p>
+                <Input
+                    required={true}
+                    value={category.name.en}
+                    placeholder={`${t('name')} - ${t('english')}`}
+                    type={'text'}
+                    label={`${t('name')} - ${t('english')}`}
+                    onChange={(e) =>
+                        dispatch(setName({ lang: "en", value: e.target.value }))
+                    }
+                />
+                <p className={validationErrors.nameEn ? "error" : 'none'}>{validationErrors.nameEn}</p>
+            </div>
+            <div className='flex gap-2'>
+                <Input
+                    value={category.description.ar}
+                    placeholder={`${t('description')} - ${t('arabic')}`}
+                    type={'text'}
+                    label={`${t('description')} - ${t('arabic')}`}
+                    onChange={(e) =>
+                        dispatch(setDescription({ lang: "ar", value: e.target.value }))
+                    }
+                />
+                <p className={validationErrors.descriptionAr ? "error" : 'none'}>{validationErrors.descriptionAr}</p>
+                <Input
+                    value={category.description.en}
+                    placeholder={`${t('description')} - ${t('english')}`}
+                    type={'text'}
+                    label={`${t('description')} - ${t('english')}`}
+                    onChange={(e) =>
+                        dispatch(setDescription({ lang: "en", value: e.target.value }))
+                    }
+                />
+                <p className={validationErrors.descriptionEn ? "error" : 'none'}>{validationErrors.descriptionEn}</p>
+            </div>
             <Button
                 style={'btn_primary'}
                 type={'submit'}
-            onClick={(e) => formMode === 'edit' ? handleUpdateCategory(e, category.id) : handleAddCategory(e)}
+                onClick={(e) => formMode === 'edit' ? handleUpdateCategory(e, category.id) : handleAddCategory(e)}
             >
                 {
                     formMode === 'edit'

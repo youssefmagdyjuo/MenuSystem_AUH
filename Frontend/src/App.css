@@ -1,3 +1,5 @@
+@import "tailwindcss";
+
 .error{
     color: var(--danger);
     font-size: 0.9rem;
@@ -73,6 +75,8 @@ input ,.selector{
     justify-content: center;
     align-items: center;
     z-index: 97;
+    /* overflow: scroll; */
+
 }
 
 .PopUpLayout_box {
@@ -99,6 +103,8 @@ input ,.selector{
     align-items: center;
     justify-content: center;
     padding: 0.5rem;
+    /* background-color: red; */
+    /* overflow: scroll; */
 }
 
 form {
@@ -115,6 +121,8 @@ form {
     border-radius: 1rem;
     height: fit-content;
     background: var(--white);
+    /* overflow: scroll; */
+
 }
 
 form ::placeholder {
