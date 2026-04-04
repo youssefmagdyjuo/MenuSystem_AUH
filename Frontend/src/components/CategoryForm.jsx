@@ -53,7 +53,7 @@ export default function CategoryFormComponent({ setFormOpen, fetchCategories, fo
     }
     return (
         <FormLayout>
-            <h2>{t('add')} {t('category')}</h2>
+            <h2 className='text-[var(--blue-color)]'>{t('add')} {t('category')}</h2>
             <div className='flex gap-2'>
                 <Input
                     required={true}
