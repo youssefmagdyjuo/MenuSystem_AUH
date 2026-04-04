@@ -83,7 +83,7 @@ export default function ProductForm({ setFormOpen, fetchProducts, formMode, setO
 
     return (
         <FormLayout >
-            {formMode === 'edit' ? <h2>{t('edit')} {t('product')}</h2> : <h2>{t('add')} {t('product')}</h2>}
+            <h2 className='text-[var(--blue-color)]'>{formMode === 'edit' ? t('edit') : t('add')} {t('product')}</h2>
             {/* product name inputs */}
             <div className='flex gap-2'>
                 <Input

@@ -24,7 +24,7 @@ body {
 }
 
 .language_switcher {
-  position: absolute;
+  position: fixed;
   top: 20px;
   cursor: pointer;
   width: 2.5rem;
@@ -68,8 +68,7 @@ body {
   color: var(--blue-color);
 }
 
-.products_table {
-}
+.products_table {}
 
 table {
   width: 100%;
@@ -102,7 +101,7 @@ table td:nth-last-child(1) {
 }
 
 table td {
-  padding: 12px ;
+  padding: 12px;
   border-bottom: 1px solid #ddd;
   position: relative;
 }
@@ -155,7 +154,7 @@ table tr:hover {
   color: var(--blue-color);
 }
 
-/* nav bar  */
+/*================ nav bar  =================*/
 .navbar_container {
   position: relative;
   display: flex;
@@ -164,9 +163,8 @@ table tr:hover {
   padding: 0.5rem;
   height: 5rem;
   box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.212);
-  left: 0;
-  right: 0;
   width: 100%;
+  background-color: var(--background-color);
 }
 
 .navbar_logo {
