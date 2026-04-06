@@ -58,7 +58,7 @@ export default function Menu() {
                 <div>
                     <h1 className='text-[var(--blue-color)] '>Alexandria Hospital - AUH</h1>
                     <h1 className='text-[var(--green-color)]'>مستشفى الأسكندرية</h1>
-                    <div className='flex justify-between items-center gap-4'>
+                    <div className='flex justify-between items-center gap-2'>
                         <div className='flex flex-col text-[var(--blue-color)]'>
                             <p>0000</p>
                             <p className='text'>{t('hot_line')}</p>
