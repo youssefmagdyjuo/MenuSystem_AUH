@@ -27,6 +27,7 @@ export const updateCategory = async (id, category) => {
 }
 // edit Category Availability
 export const editCategoryAvailability = async (id, isAvailable) => {
+    console.log(id)
     try {
         await axios.put(`${import.meta.env.VITE_API_URL}/v1/api/categories/availablity/${id}`, isAvailable);
     } catch (error) {

@@ -1,10 +1,12 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Table from '../components/Table'
 import { useTranslation } from "react-i18next";
 import { getProducts } from '../hooks/products'
 import i18n from '../i18n';
+import Loader from '../components/Loader';
 
 export default function Menu() {
+    const [loading, setLoading] = useState(true);
     // Translation hook
     const { t } = useTranslation();
     // 1) fetch items from database
@@ -13,19 +15,19 @@ export default function Menu() {
         const fetchProducts = async () => {
             const products = await getProducts();
             setItems(products);
-            console.log(products)
+            if (products.length > 0) setLoading(false);
         }
         fetchProducts();
     }, [i18n.language])
     // 2) Map items to include only the current language's name and description, and extract unique categories
     const filteredItems = items
-    .filter(item => item.isAvailable) // Filter to include only available items
-    .map(item => ({
-        ...item,
-        name: item.name[i18n.language],
-        description: item.description[i18n.language],
-        categoryName: item.categoryName[i18n.language]
-    }))
+        .filter(item => item.isAvailable) // Filter to include only available items
+        .map(item => ({
+            ...item,
+            name: item.name[i18n.language],
+            description: item.description[i18n.language],
+            categoryName: item.categoryName[i18n.language]
+        }))
     // 3) Extract unique categories from items
     const categories = [...new Set(filteredItems.map(item => item.categoryName))]
         .map((cat, index) => ({ id: index, name: cat }))
@@ -35,7 +37,7 @@ export default function Menu() {
         { key: "name", label: t('name') },
         { key: "description", label: t('description') },
         { key: "price.staff", label: `${t('price')} -  ${t('staff')}` },
-        { key: "price.guest", label: `${t('price')} -  ${t('guest')}` },    ]
+        { key: "price.guest", label: `${t('price')} -  ${t('guest')}` },]
 
     // Handle menu download as PDF
     const handleDownload = async () => {
@@ -54,21 +56,32 @@ export default function Menu() {
             <div className="header">
                 <img src="/auhLogo.png" alt="" className='logo' />
                 <div>
-                    <h1 style={{ margin: '0' }}>Alexandria Hospital - AUH</h1>
-                    <h1 style={{ color: 'var(--green-color)' }}>مستشفى الأسكندرية</h1>
-                    <button
-                        className='btn btn_primary'
-                        data-html2canvas-ignore
-                        onClick={handleDownload}> <i class="fa-solid fa-download"></i> {t('download')}   {t('menu')}
-                    </button>
+                    <h1 className='text-[var(--blue-color)] '>Alexandria Hospital - AUH</h1>
+                    <h1 className='text-[var(--green-color)]'>مستشفى الأسكندرية</h1>
+                    <div className='flex justify-between items-center gap-4'>
+                        <div className='flex flex-col text-[var(--blue-color)]'>
+                            <p>0000</p>
+                            <p className='text'>{t('hot_line')}</p>
+                        </div>
+                        <button
+                            className='btn btn_primary'
+                            data-html2canvas-ignore
+                            onClick={handleDownload}> <i class="fa-solid fa-download"></i> {t('download')}   {t('menu')}
+                        </button>
+                        <div className='flex flex-col text-[var(--blue-color)] '>
+                            <p>7028</p>
+                            <p>{t('cafeteria')}</p>
+                        </div>
+                    </div>
                 </div>
             </div>
             {
-                categories.map(category => (
-                    <div key={category.id}>
-                        <Table tableName={category.name} data={filteredItems.filter(item => item.categoryName === category.name)} columns={Headers} />
-                    </div>
-                ))
+                loading ? <Loader />
+                    : filteredItems.length > 0 ? categories.map(category => (
+                        <div key={category.id}>
+                            <Table tableName={category.name} data={filteredItems.filter(item => item.categoryName === category.name)} columns={Headers} />
+                        </div>
+                    )) : <h2 style={{ textAlign: 'center', marginTop: '5rem' }}>{t('no_items')}</h2>
             }
 
         </div>

@@ -19,6 +19,7 @@ export default function Categories() {
     const [categories, setCategories] = useState([])
     const fetchCategories = async () => {
         const resulte = await getCategories()
+        console.log(resulte)
         setCategories(resulte)
 
     }

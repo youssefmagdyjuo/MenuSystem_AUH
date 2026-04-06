@@ -20,7 +20,6 @@ export default function Products() {
     const fetchProducts = async () => {
         const products = await getProducts();
         setItems(products);
-        // console.log(products)
     }
     useEffect(() => {
         const fetchData = async () => {
@@ -69,7 +68,7 @@ export default function Products() {
                             <div className='overflow-x-auto lg:overflow-x-visible' key={category.id}>
                                 <Table
                                     tableType='products'
-                                fetchProducts={fetchProducts}
+                                    fetchProducts={fetchProducts}
                                     tableName={category.name}
                                     data={filteredItems.filter(item =>
                                         item.categoryName === category.name).map(item =>
@@ -137,7 +136,7 @@ export default function Products() {
                 }
             </div>
             <PopUpLayout open={formOpen}>
-                <div className='close' onClick={() => { setFormOpen(false), setOpenOptionsId(null) , dispatch(resetProduct(),setFormMode('add'))}}>
+                <div className='close' onClick={() => { setFormOpen(false), setOpenOptionsId(null), dispatch(resetProduct(), setFormMode('add')) }}>
                     <i class="fa-solid fa-xmark"></i>
                 </div>
                 <ProductForm setFormOpen={setFormOpen} fetchProducts={fetchProducts} formMode={formMode} setOpenOptionsId={setOpenOptionsId} />

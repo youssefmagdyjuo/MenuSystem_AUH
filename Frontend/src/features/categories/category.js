@@ -23,10 +23,9 @@ const categorySlice = createSlice({
             state.description[lang] = value;
         },
         setFullData: (state, action) => {
-            const { name, description ,_id} = action.payload;
+            const { name, description} = action.payload;
             state.name = name;
             state.description = description;
-            state.id = _id;
 
         },
         resetCategory: (state) => {

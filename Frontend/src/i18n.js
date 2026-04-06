@@ -31,6 +31,9 @@ i18n.use(initReactI18next).init({
                 show: 'Show',
                 staff: 'Staff',
                 guest: 'Guest',
+                no_items: 'No items available',
+                hot_line: 'Hot Line',
+                cafeteria: 'Cafeteria'
 
             }
         },
@@ -61,6 +64,9 @@ i18n.use(initReactI18next).init({
                 show: 'إظهار',
                 staff: 'الموظفين',
                 guest: 'الضيوف',
+                no_items: 'لا توجد عناصر متاحة',
+                hot_line: 'الخط الساخن',
+                cafeteria: 'الكافيتريا'
             }
         }
     },

@@ -17,18 +17,16 @@ const productSlice = createSlice({
         },
         categoryId: '',
         categoryName: '',
-        id:''
     },
     reducers: {
 
         setFullData: (state, action) => {
-            const { name, description, price, categoryId, categoryName, _id } = action.payload;
+            const { name, description, price, categoryId, categoryName } = action.payload;
             state.name = name;
             state.description = description;
             state.price = price;
             state.categoryId = categoryId;
             state.categoryName = categoryName;
-            state.id = _id;
         },
 
         setName: (state, action) => {
@@ -55,6 +53,7 @@ const productSlice = createSlice({
             state.description = { en: "", ar: "" };
             state.price = { staff: '', guest: '' };
             state.categoryId = null;
+            state.categoryName = '';
         }
     }
 });
