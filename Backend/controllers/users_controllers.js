@@ -1,4 +1,4 @@
-const { getAllUsers, addUser, updateUser, deleteUser ,updateUserPassworduu} = require('../services/users_service');
+const { getAllUsers, addUser, updateUser, deleteUser ,updateUserPassword} = require('../services/users_service');
 const bcrypt = require('bcryptjs');
 const { getDB } = require('../db');
 const { ObjectId } = require('mongodb');

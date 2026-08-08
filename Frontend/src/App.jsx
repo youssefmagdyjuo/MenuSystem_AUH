@@ -23,7 +23,11 @@ function App() {
           <Route path="/products" element={<Products />} />
           <Route path="/categories" element={<Categories />} />
         </Route>
+          // Default route for guests
+          
           <Route path="/" element={<Menu />} />
+          // Separate routes for staff
+          <Route path="/staff" element={<Menu userType="staff" />} />
       </Routes>
     </Router>
   )

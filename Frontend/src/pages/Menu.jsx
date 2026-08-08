@@ -5,7 +5,7 @@ import { getProducts } from '../hooks/products'
 import i18n from '../i18n';
 import Loader from '../components/Loader';
 
-export default function Menu() {
+export default function Menu({userType='guest'}) {
     const [loading, setLoading] = useState(true);
     // Translation hook
     const { t } = useTranslation();
@@ -36,9 +36,12 @@ export default function Menu() {
     const Headers = [
         { key: "name", label: t('name') },
         { key: "description", label: t('description') },
-        { key: "price.staff", label: `${t('price')} -  ${t('staff')}` },
-        { key: "price.guest", label: `${t('price')} -  ${t('guest')}` },]
-
+    ]
+if (userType === 'staff') {
+    Headers.push({ key: "price.staff", label: `${t('price')} -  ${t('staff')}` })
+}else if (userType === 'guest') {
+    Headers.push({ key: "price.guest", label: `${t('price')} -  ${t('guest')}` })
+}
     // Handle menu download as PDF
     const handleDownload = async () => {
         // Implement download logic here
